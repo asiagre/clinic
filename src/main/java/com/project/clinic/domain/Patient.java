@@ -40,9 +40,6 @@ public class Patient {
 
     @Column(name = "email")
     private String email;
-//
-//    @Column(name = "admin")
-//    private boolean admin;
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
@@ -16,26 +18,6 @@ public class PatientRepositoryTest {
 
     @Autowired
     private PatientRepository patientRepository;
-
-//    public List<PatientDto> getAllPatients() {
-//        return patientMapper.mapToPatientDtoList(patientRepository.findAll());
-//    }
-//
-//    public List<PatientDto> getPatientByLastname(String lastname) {
-//        return patientMapper.mapToPatientDtoList(patientRepository.retrievePatientsWhereLastnameFragmentIs(lastname));
-//    }
-//
-//    public PatientDto getPatientById(Long patientId) {
-//        return patientMapper.mapToPatientDto(patientRepository.findById(patientId).get());
-//    }
-//
-//    public void deletePatient(Long patientId) {
-//        patientRepository.deleteById(patientId);
-//    }
-//
-//    public boolean existsById(Long patientId) {
-//        return patientRepository.existsById(patientId);
-//    }
 
     @Test
     public void shouldSavePatient() {
@@ -51,6 +33,95 @@ public class PatientRepositoryTest {
 
         //CleanUp
         patientRepository.deleteById(patientFromDb.getId());
+    }
+
+    @Test
+    public void shouldGetAllPatients() {
+        //Given
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        patientRepository.save(patient);
+
+        //When
+        List<Patient> patients = patientRepository.findAll();
+
+        //Then
+        Assert.assertEquals(1, patients.size());
+        Assert.assertEquals("Kowalski", patients.get(0).getLastname());
+
+        //CleanUp
+        patientRepository.deleteById(patients.get(0).getId());
+    }
+
+    @Test
+    public void shouldGetPatientByLastname() {
+        //Given
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        patientRepository.save(patient);
+
+        //When
+        List<Patient> patients = patientRepository.retrievePatientsWhereLastnameFragmentIs("owa");
+        List<Patient> emptyList = patientRepository.retrievePatientsWhereLastnameFragmentIs("sfn");
+
+        //Then
+        Assert.assertEquals(1, patients.size());
+        Assert.assertEquals("Kowalski", patients.get(0).getLastname());
+        Assert.assertEquals(0, emptyList.size());
+
+        //CleanUp
+        patientRepository.deleteById(patients.get(0).getId());
+    }
+
+    @Test
+    public void shouldGetPatientById() {
+        //Given
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        patientRepository.save(patient);
+
+        //When
+        Long id = patientRepository.findAll().get(0).getId();
+        Patient patientFromDb = patientRepository.findById(id).get();
+
+        //Then
+        Assert.assertEquals("Kowalski", patientFromDb.getLastname());
+
+        //CleanUp
+        patientRepository.deleteById(id);
+    }
+
+    @Test
+    public void shouldDeletePatient() {
+        //Given
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        patientRepository.save(patient);
+
+        //When
+        List<Patient> patientsBeforeRemoval = patientRepository.findAll();
+        patientRepository.deleteById(patientsBeforeRemoval.get(0).getId());
+        List<Patient> patientsAfterRemoval = patientRepository.findAll();
+
+        //Then
+        Assert.assertEquals(1, patientsBeforeRemoval.size());
+        Assert.assertEquals(0, patientsAfterRemoval.size());
+
+    }
+
+    @Test
+    public void shouldCheckIfPatientExists() {
+        //Given
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        patientRepository.save(patient);
+
+        //When
+        List<Patient> patients = patientRepository.findAll();
+        boolean exists1 = patientRepository.existsById(patients.get(0).getId());
+        boolean exists2 = patientRepository.existsById(134L);
+
+        //Then
+        Assert.assertTrue(exists1);
+        Assert.assertFalse(exists2);
+
+        //CleanUp
+        patientRepository.deleteById(patients.get(0).getId());
     }
 
 }

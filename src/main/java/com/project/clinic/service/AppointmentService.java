@@ -30,9 +30,6 @@ public class AppointmentService {
     private AppointmentRepository appointmentRepository;
 
     @Autowired
-    private AppointmentMapper appointmentMapper;
-
-    @Autowired
     private DoctorRepository doctorRepository;
 
     @Autowired
@@ -44,10 +41,6 @@ public class AppointmentService {
                 .filter(slot -> slot.equals(appointment.getVisitDate()))
                 .count();
         if(numberOfSlots > 0) {
-//            List<LocalDateTime> slots = appointment.getDoctor().getSlots().stream()
-//                    .filter(slot -> !slot.equals(appointment.getVisitDate()))
-//                    .collect(Collectors.toList());
-//            doctor.setSlots(slots);
             doctor.getSlots().remove(appointment.getVisitDate());
             doctorRepository.save(doctor);
             return appointmentRepository.save(appointment);
@@ -56,34 +49,28 @@ public class AppointmentService {
         }
     }
 
-    public AppointmentDto changeAppointmentDate(AppointmentDto appointmentDto) {
-        Doctor doctor = doctorRepository.findById(appointmentDto.getDoctorId()).get();
-        Patient patient = patientRepository.findById(appointmentDto.getPatientId()).get();
-        Appointment appointment = appointmentRepository.findById(appointmentDto.getId()).get();
+    public Appointment changeAppointmentDate(Long doctorId, Long appointmentId, LocalDateTime newTime) {
+        Doctor doctor = doctorRepository.findById(doctorId).get();
+        Appointment appointment = appointmentRepository.findById(appointmentId).get();
         long slots = doctor.getSlots().stream()
-                .filter(slot -> slot.equals(appointmentDto.getVisitDate()))
+                .filter(slot -> slot.equals(newTime))
                 .count();
-        if(slots > 0) {
+        if (slots > 0) {
             LocalDateTime oldVisitTime = appointment.getVisitDate();
             doctor.getSlots().add(oldVisitTime);
-            doctor.getSlots().remove(appointmentDto.getVisitDate());
-//            Set<LocalDateTime> newSlots = doctor.getSlots().stream()
-//                    .filter(slot -> !slot.equals(appointmentDto.getVisitDate()))
-//                    .collect(Collectors.toSet());
-//            doctor.setSlots(newSlots);
+            doctor.getSlots().remove(newTime);
             doctorRepository.save(doctor);
-            appointment.setVisitDate(appointmentDto.getVisitDate());
-//            Appointment appointment1 = appointmentRepository.save(appointment);
-            return appointmentMapper.mapToAppointmentDto(appointmentRepository.save(appointment));
+            appointment.setVisitDate(newTime);
+            return appointmentRepository.save(appointment);
         } else {
             throw new SlotsException("This timeframe is not available");
         }
     }
 
-    public List<AppointmentDto> getPatientAppointments(Long patientId) {
-        List<AppointmentDto> appointmentDtos = appointmentMapper.mapToAppointmentDtoList(appointmentRepository.findAll());
-        return appointmentDtos.stream()
-                .filter(appointmentDto -> appointmentDto.getPatientId().equals(patientId))
+    public List<Appointment> getPatientAppointments(Long patientId) {
+        List<Appointment> appointments = appointmentRepository.findAll();
+        return appointments.stream()
+                .filter(appointment -> appointment.getPatient().getId().equals(patientId))
                 .collect(Collectors.toList());
     }
 

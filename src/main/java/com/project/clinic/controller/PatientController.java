@@ -19,9 +19,6 @@ public class PatientController {
     @Autowired
     private PatientFacade patientFacade;
 
-    @Autowired
-    private Validator validator;
-
     @RequestMapping(method = RequestMethod.GET, value = "patients")
     public List<PatientDto> getAllPatients() {
         return patientFacade.getAllPatients();

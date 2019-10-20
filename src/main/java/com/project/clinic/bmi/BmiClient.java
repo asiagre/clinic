@@ -52,22 +52,5 @@ public class BmiClient {
         return objectMapper.readValue(response.body().string(), BmiAnswer.class);
     }
 
-    private String createString(BmiDto bmiDto) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("{\"weight\":{\"value\":\"");
-        builder.append(bmiDto.getWeight().getValue());
-        builder.append("\",\"unit\":\"");
-        builder.append(bmiDto.getWeight().getUnit());
-        builder.append("\"},\"height\":{\"value\":\"");
-        builder.append(bmiDto.getHeight().getValue());
-        builder.append("\",\"unit\":\"");
-        builder.append(bmiDto.getHeight().getUnit());
-        builder.append("\"},\"sex\":\"");
-        builder.append(bmiDto.getSex());
-        builder.append("\",\"age\":\"");
-        builder.append(bmiDto.getAge());
-        builder.append("\"}");
-        return builder.toString();
-    }
 
 }

@@ -17,9 +17,6 @@ public class PatientService {
     @Autowired
     private PatientRepository patientRepository;
 
-    @Autowired
-    private PatientMapper patientMapper;
-
     public List<Patient> getAllPatients() {
         return patientRepository.findAll();
     }

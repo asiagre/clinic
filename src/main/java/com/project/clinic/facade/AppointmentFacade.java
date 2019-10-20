@@ -12,6 +12,10 @@ import com.project.clinic.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class AppointmentFacade {
 
@@ -39,34 +43,19 @@ public class AppointmentFacade {
         return appointmentMapper.mapToAppointmentDto(appointment);
     }
 
-    public AppointmentDto changeAppointmentDate(AppointmentDto appointmentDto) {
-        validator.validateDoctorId(appointmentDto.getDoctorId());
-        validator.validatePatientId(appointmentDto.getPatientId());
-        Doctor doctor = doctorService.findDoctorById(appointmentDto.getDoctorId());
-        Patient patient = patientService.getPatientById(appointmentDto.getPatientId());
-        Appointment appointment = appointmentService.changeAppointmentDate(appointmentMapper.mapToAppointment(appointmentDto, doctor, patient));
-        return appointmentMapper.mapToAppointmentDto(appointment);
+    public AppointmentDto changeAppointmentDate(Long doctorId, Long appointmentId, LocalDateTime newTime) {
+        validator.validateAppointmentId(appointmentId);
+        return appointmentMapper.mapToAppointmentDto(appointmentService.changeAppointmentDate(doctorId, appointmentId, newTime));
     }
-//
-//    public List<AppointmentDto> getPatientAppointments(Long patientId) {
-//        List<AppointmentDto> appointmentDtos = appointmentMapper.mapToAppointmentDtoList(appointmentRepository.findAll());
-//        return appointmentDtos.stream()
-//                .filter(appointmentDto -> appointmentDto.getPatientId().equals(patientId))
-//                .collect(Collectors.toList());
-//    }
-//
-//    public void removeAppointment(Long id) {
-//        Appointment appointment = appointmentRepository.findById(id).get();
-//        Doctor doctor = doctorRepository.findById(appointment.getDoctor().getId()).get();
-//        Patient patient = patientRepository.findById(appointment.getPatient().getId()).get();
-//        patient.getAppointmentList().remove(appointment);
-//        doctor.getSlots().add(appointment.getVisitDate());
-//        patientRepository.save(patient);
-//        doctorRepository.save(doctor);
-//        appointmentRepository.deleteById(id);
-//    }
-//
-//    public boolean existsById(Long id) {
-//        return appointmentRepository.existsById(id);
-//    }
+
+    public List<AppointmentDto> getPatientAppointments(Long patientId) {
+        validator.validatePatientId(patientId);
+        return appointmentMapper.mapToAppointmentDtoList(appointmentService.getPatientAppointments(patientId));
+    }
+
+    public void removeAppointment(Long id) {
+        validator.validateAppointmentId(id);
+        appointmentService.removeAppointment(id);
+    }
+
 }
