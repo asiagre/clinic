@@ -3,8 +3,6 @@ package com.project.clinic.controller;
 import com.project.clinic.dto.PatientDto;
 import com.project.clinic.exception.IdNotFoundException;
 import com.project.clinic.facade.PatientFacade;
-import com.project.clinic.service.PatientService;
-import com.project.clinic.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -5,7 +5,6 @@ import com.project.clinic.domain.Appointment;
 import com.project.clinic.mail.Mail;
 import com.project.clinic.mail.SimpleEmailService;
 import com.project.clinic.repository.AppointmentRepository;
-import com.project.clinic.repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -27,7 +26,7 @@ public class EmailScheduler {
     @Autowired
     private AdminConfig adminConfig;
 
-    @Scheduled(cron = "0 8 17 * * *")
+    @Scheduled(cron = "0 0 8 * * *")
     public void sendReminderEmail() {
         List<Appointment> appointments = getAppointments();
         appointments.forEach(appointment -> emailSender(appointment));

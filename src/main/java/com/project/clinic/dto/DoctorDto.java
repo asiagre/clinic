@@ -1,15 +1,10 @@
 package com.project.clinic.dto;
 
-import com.project.clinic.domain.Specialization;
-import com.project.clinic.exception.SlotsException;
 import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.IntStream;
 
 @Getter
 @Setter
@@ -71,6 +66,12 @@ public class DoctorDto {
         }
 
         public DoctorDto build() {
+            if(scores == null) {
+                this.scores = new ArrayList<>();
+            }
+            if(freeSlots == null) {
+                this.freeSlots = new ArrayList<>();
+            }
             return new DoctorDto(id, firstname, lastname, specialization, rating, scores, freeSlots);
         }
     }

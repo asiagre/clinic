@@ -1,14 +1,11 @@
 package com.project.clinic.service;
 
 import com.project.clinic.domain.Doctor;
-import com.project.clinic.dto.DoctorDto;
 import com.project.clinic.exception.SlotsException;
-import com.project.clinic.mapper.DoctorMapper;
 import com.project.clinic.repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.print.Doc;
 import java.time.LocalDateTime;
 import java.util.List;
 

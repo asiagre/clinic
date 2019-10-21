@@ -1,11 +1,7 @@
 package com.project.clinic.service;
 
 import com.project.clinic.domain.Patient;
-import com.project.clinic.dto.PatientDto;
-import com.project.clinic.exception.IdNotFoundException;
-import com.project.clinic.mapper.PatientMapper;
 import com.project.clinic.repository.PatientRepository;
-import com.project.clinic.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

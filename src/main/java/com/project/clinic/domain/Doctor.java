@@ -1,6 +1,5 @@
 package com.project.clinic.domain;
 
-import com.project.clinic.exception.SlotsException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,9 +10,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @NamedNativeQuery(
         name = "Doctor.retrieveDoctorsWhereLastnameFragmentIs",
@@ -59,54 +56,4 @@ public class Doctor {
         this.rating = rating;
     }
 
-    public static class DoctorBuilder {
-        private Long id;
-        private String firstname;
-        private String lastname;
-        private String specialization;
-        private double rating;
-        private List<Integer> scores;
-        private List<LocalDateTime> freeSlots;
-
-        public DoctorBuilder id(Long id) {
-            this.id = id;
-            return this;
-        }
-
-        public DoctorBuilder firstname(String firstname) {
-            this.firstname = firstname;
-            return this;
-        }
-
-        public DoctorBuilder lastname(String lastname) {
-            this.lastname = lastname;
-            return this;
-        }
-
-        public DoctorBuilder specialization(String specialization) {
-            this.specialization = specialization;
-            return this;
-        }
-
-        public DoctorBuilder rating(double rating) {
-            this.rating = rating;
-            return this;
-        }
-
-        public DoctorBuilder scores(List<Integer> scores) {
-            this.scores = new ArrayList<>();
-            scores.forEach(score -> this.scores.add(score));
-            return this;
-        }
-
-        public DoctorBuilder freeSlots(List<LocalDateTime> slots) {
-            this.freeSlots = new ArrayList<>();
-            slots.forEach(slot -> this.freeSlots.add(slot));
-            return this;
-        }
-
-        public Doctor build() {
-            return new Doctor(id, firstname, lastname, specialization, rating, scores, freeSlots);
-        }
-    }
 }

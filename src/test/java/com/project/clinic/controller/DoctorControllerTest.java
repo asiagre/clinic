@@ -2,7 +2,6 @@ package com.project.clinic.controller;
 
 import com.google.gson.Gson;
 import com.project.clinic.dto.DoctorDto;
-import com.project.clinic.dto.PatientDto;
 import com.project.clinic.facade.DoctorFacade;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,12 +13,11 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -50,7 +48,13 @@ public class DoctorControllerTest {
     @Test
     public void shouldGetAllDoctors() throws Exception {
         //Given
-        DoctorDto doctorDto = new DoctorDto(1L, "Adam", "Śliwiński", "GP", 5.0, new ArrayList<>(), new ArrayList<>());
+        DoctorDto doctorDto = new DoctorDto.DoctorDtoBuilder()
+                .id(1L)
+                .firstname("Adam")
+                .lastname("Śliwiński")
+                .specialization("GP")
+                .rating(5.0)
+                .build();
         List<DoctorDto> doctorDtos = new ArrayList<>();
         doctorDtos.add(doctorDto);
         when(doctorFacade.getAllDoctors()).thenReturn(doctorDtos);
@@ -66,7 +70,13 @@ public class DoctorControllerTest {
     @Test
     public void shouldFindDoctorById() throws Exception {
         //Given
-        DoctorDto doctorDto = new DoctorDto(1L, "Adam", "Śliwiński", "GP", 5.0, new ArrayList<>(), new ArrayList<>());
+        DoctorDto doctorDto = new DoctorDto.DoctorDtoBuilder()
+                .id(1L)
+                .firstname("Adam")
+                .lastname("Śliwiński")
+                .specialization("GP")
+                .rating(5.0)
+                .build();
         when(doctorFacade.findDoctorById(1L)).thenReturn(doctorDto);
 
         //When&Then
@@ -79,7 +89,13 @@ public class DoctorControllerTest {
     @Test
     public void shouldFindDoctorsByLastname() throws Exception {
         //Given
-        DoctorDto doctorDto = new DoctorDto(1L, "Adam", "Śliwiński", "GP", 5.0, new ArrayList<>(), new ArrayList<>());
+        DoctorDto doctorDto = new DoctorDto.DoctorDtoBuilder()
+                .id(1L)
+                .firstname("Adam")
+                .lastname("Śliwiński")
+                .specialization("GP")
+                .rating(5.0)
+                .build();
         List<DoctorDto> doctorDtos = new ArrayList<>();
         doctorDtos.add(doctorDto);
         when(doctorFacade.findDoctorsByLastname(anyString())).thenReturn(doctorDtos);
@@ -96,7 +112,13 @@ public class DoctorControllerTest {
     @Test
     public void shouldFindDoctorsBySpecialization() throws Exception {
         //Given
-        DoctorDto doctorDto = new DoctorDto(1L, "Adam", "Śliwiński", "GP", 5.0, new ArrayList<>(), new ArrayList<>());
+        DoctorDto doctorDto = new DoctorDto.DoctorDtoBuilder()
+                .id(1L)
+                .firstname("Adam")
+                .lastname("Śliwiński")
+                .specialization("GP")
+                .rating(5.0)
+                .build();
         List<DoctorDto> doctorDtos = new ArrayList<>();
         doctorDtos.add(doctorDto);
         when(doctorFacade.findDoctorsBySpecialization("GP")).thenReturn(doctorDtos);
@@ -114,7 +136,13 @@ public class DoctorControllerTest {
     public void shouldAddDoctor() throws Exception {
         //Given
         Gson gson = new Gson();
-        DoctorDto doctorDto = new DoctorDto(1L, "Adam", "Śliwiński", "GP", 5.0, new ArrayList<>(), new ArrayList<>());
+        DoctorDto doctorDto = new DoctorDto.DoctorDtoBuilder()
+                .id(1L)
+                .firstname("Adam")
+                .lastname("Śliwiński")
+                .specialization("GP")
+                .rating(5.0)
+                .build();
         when(doctorFacade.saveDoctor(ArgumentMatchers.any(DoctorDto.class))).thenReturn(doctorDto);
         String jsonContent = gson.toJson(doctorDto);
 
@@ -131,7 +159,13 @@ public class DoctorControllerTest {
     public void shouldEditDoctor() throws Exception {
         //Given
         Gson gson = new Gson();
-        DoctorDto doctorDto = new DoctorDto(1L, "Adam", "Śliwa", "GP", 5.0, new ArrayList<>(), new ArrayList<>());
+        DoctorDto doctorDto = new DoctorDto.DoctorDtoBuilder()
+                .id(1L)
+                .firstname("Adam")
+                .lastname("Śliwa")
+                .specialization("GP")
+                .rating(5.0)
+                .build();
         when(doctorFacade.saveDoctor(ArgumentMatchers.any(DoctorDto.class))).thenReturn(doctorDto);
         String jsonContent = gson.toJson(doctorDto);
 

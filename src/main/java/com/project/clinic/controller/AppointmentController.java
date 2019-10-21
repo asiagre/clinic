@@ -1,10 +1,7 @@
 package com.project.clinic.controller;
 
 import com.project.clinic.dto.AppointmentDto;
-import com.project.clinic.exception.IdNotFoundException;
 import com.project.clinic.facade.AppointmentFacade;
-import com.project.clinic.service.AppointmentService;
-import com.project.clinic.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;

@@ -15,8 +15,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class AppointmentMapperTest {
@@ -41,7 +39,12 @@ public class AppointmentMapperTest {
     @Test
     public void mapToAppointment() {
         //Given
-        AppointmentDto appointmentDto = new AppointmentDto(3L, 1L, 2L, LocalDateTime.of(2019, 11, 5, 8, 0));
+        AppointmentDto appointmentDto = new AppointmentDto.AppointmentDtoBuilder()
+                .id(3L)
+                .doctorId(1L)
+                .patientId(2L)
+                .visitDate(LocalDateTime.of(2019, 11, 5, 8, 0))
+                .build();
         Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 5.0);
 

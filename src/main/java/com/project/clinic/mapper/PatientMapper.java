@@ -19,19 +19,10 @@ public class PatientMapper {
                 .phoneNumber(patient.getPhoneNumber())
                 .email(patient.getEmail())
                 .build();
-        //return new PatientDto(patient.getId(), patient.getFirstname(), patient.getLastname(), patient.getPin(), patient.getPhoneNumber(), patient.getEmail());
     }
 
     public Patient mapToPatient(final PatientDto patientDto) {
-        return new Patient.PatientBuilder()
-                .id(patientDto.getId())
-                .firstname(patientDto.getFirstname())
-                .lastname(patientDto.getLastname())
-                .pin(patientDto.getPin())
-                .phoneNumber(patientDto.getPhoneNumber())
-                .email(patientDto.getEmail())
-                .build();
-        //return new Patient(patientDto.getId(), patientDto.getFirstname(), patientDto.getLastname(), patientDto.getPin(), patientDto.getPhoneNumber(), patientDto.getEmail());
+        return new Patient(patientDto.getId(), patientDto.getFirstname(), patientDto.getLastname(), patientDto.getPin(), patientDto.getPhoneNumber(), patientDto.getEmail());
     }
 
     public List<PatientDto> mapToPatientDtoList(final List<Patient> patients) {

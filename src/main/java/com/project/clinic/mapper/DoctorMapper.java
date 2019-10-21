@@ -21,21 +21,10 @@ public class DoctorMapper {
                 .scores(doctor.getScores())
                 .freeSlots(doctor.getSlots())
                 .build();
-
-        //return new DoctorDto(doctor.getId(), doctor.getFirstname(), doctor.getLastname(), doctor.getSpecialization(), doctor.getRating(), new ArrayList<>(doctor.getScores()), new ArrayList<>(doctor.getSlots()));
     }
 
     public Doctor mapToDoctor(final DoctorDto doctorDto) {
-        return new Doctor.DoctorBuilder()
-                .id(doctorDto.getId())
-                .firstname(doctorDto.getFirstname())
-                .lastname(doctorDto.getLastname())
-                .specialization(doctorDto.getSpecialization())
-                .rating(doctorDto.getRating())
-                .scores(doctorDto.getScores())
-                .freeSlots(doctorDto.getFreeSlots())
-                .build();
-        //return new Doctor(doctorDto.getId(), doctorDto.getFirstname(), doctorDto.getLastname(), doctorDto.getSpecialization(), doctorDto.getRating(), new ArrayList<>(doctorDto.getScores()), new ArrayList<>());
+        return new Doctor(doctorDto.getId(), doctorDto.getFirstname(), doctorDto.getLastname(), doctorDto.getSpecialization(), doctorDto.getRating(), new ArrayList<>(doctorDto.getScores()), new ArrayList<>());
     }
 
     public List<DoctorDto> mapToDoctorDtoList(final List<Doctor> doctors) {

@@ -15,7 +15,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
@@ -39,7 +38,14 @@ public class PatientFacadeTest {
         //Given
         List<PatientDto> patientDtos = new ArrayList<>();
         List<Patient> patients = new ArrayList<>();
-        PatientDto patientDto = new PatientDto(1L, "Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        PatientDto patientDto = new PatientDto.PatientDtoBuilder()
+                .id(1L)
+                .firstname("Jan")
+                .lastname("Kowalski")
+                .pin("56071812345")
+                .phoneNumber("536192836")
+                .email("jan.kowalski@test.pl")
+                .build();
         Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
         patientDtos.add(patientDto);
         patients.add(patient);
@@ -59,7 +65,14 @@ public class PatientFacadeTest {
         //Given
         List<PatientDto> patientDtos = new ArrayList<>();
         List<Patient> patients = new ArrayList<>();
-        PatientDto patientDto = new PatientDto(1L, "Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        PatientDto patientDto = new PatientDto.PatientDtoBuilder()
+                .id(1L)
+                .firstname("Jan")
+                .lastname("Kowalski")
+                .pin("56071812345")
+                .phoneNumber("536192836")
+                .email("jan.kowalski@test.pl")
+                .build();
         Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
         patientDtos.add(patientDto);
         patients.add(patient);
@@ -77,7 +90,14 @@ public class PatientFacadeTest {
     @Test
     public void shouldGetPatientById() {
         //Given
-        PatientDto patientDto = new PatientDto(1L, "Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        PatientDto patientDto = new PatientDto.PatientDtoBuilder()
+                .id(1L)
+                .firstname("Jan")
+                .lastname("Kowalski")
+                .pin("56071812345")
+                .phoneNumber("536192836")
+                .email("jan.kowalski@test.pl")
+                .build();
         Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
         when(validator.validatePatientId(anyLong())).thenReturn(true);
         when(patientService.getPatientById(anyLong())).thenReturn(patient);
@@ -93,7 +113,14 @@ public class PatientFacadeTest {
     @Test
     public void shouldSavePatient() {
         //Given
-        PatientDto patientDto = new PatientDto(1L, "Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        PatientDto patientDto = new PatientDto.PatientDtoBuilder()
+                .id(1L)
+                .firstname("Jan")
+                .lastname("Kowalski")
+                .pin("56071812345")
+                .phoneNumber("536192836")
+                .email("jan.kowalski@test.pl")
+                .build();
         Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
         when(patientService.savePatient(patient)).thenReturn(patient);
         when(patientMapper.mapToPatient(any(PatientDto.class))).thenReturn(patient);

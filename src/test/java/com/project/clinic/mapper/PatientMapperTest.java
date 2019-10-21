@@ -12,8 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PatientMapperTest {
@@ -36,13 +34,20 @@ public class PatientMapperTest {
     @Test
     public void mapToPatient() {
         //Given
-        PatientDto patientDto = new PatientDto(1L, "Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        PatientDto patientDto = new PatientDto.PatientDtoBuilder()
+                .id(1L)
+                .firstname("Jan")
+                .lastname("Kowalski")
+                .pin("56071812345")
+                .phoneNumber("536192836")
+                .email("jan.kowalski@test.pl")
+                .build();
 
         //When
         Patient patient = patientMapper.mapToPatient(patientDto);
 
         //Then
-        Assert.assertEquals("Kowalski", patientDto.getLastname());
+        Assert.assertEquals("Kowalski", patient.getLastname());
     }
 
     @Test

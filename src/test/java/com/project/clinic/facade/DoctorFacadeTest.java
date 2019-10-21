@@ -12,13 +12,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import javax.print.Doc;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
@@ -57,7 +54,13 @@ public class DoctorFacadeTest {
         //Given
         List<DoctorDto> doctorDtos = new ArrayList<>();
         List<Doctor> doctors = new ArrayList<>();
-        DoctorDto doctorDto = new DoctorDto(1L, "Adam", "Śliwiński", "GP", 5.0, new ArrayList<>(), new ArrayList<>());
+        DoctorDto doctorDto = new DoctorDto.DoctorDtoBuilder()
+                .id(1L)
+                .firstname("Adam")
+                .lastname("Śliwiński")
+                .specialization("GP")
+                .rating(5.0)
+                .build();
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 5.0);
         doctorDtos.add(doctorDto);
         doctors.add(doctor);
@@ -77,7 +80,13 @@ public class DoctorFacadeTest {
         //Given
         List<DoctorDto> doctorDtos = new ArrayList<>();
         List<Doctor> doctors = new ArrayList<>();
-        DoctorDto doctorDto = new DoctorDto(1L, "Adam", "Śliwiński", "GP", 5.0, new ArrayList<>(), new ArrayList<>());
+        DoctorDto doctorDto = new DoctorDto.DoctorDtoBuilder()
+                .id(1L)
+                .firstname("Adam")
+                .lastname("Śliwiński")
+                .specialization("GP")
+                .rating(5.0)
+                .build();
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 5.0);
         doctorDtos.add(doctorDto);
         doctors.add(doctor);
@@ -97,7 +106,13 @@ public class DoctorFacadeTest {
         //Given
         List<DoctorDto> doctorDtos = new ArrayList<>();
         List<Doctor> doctors = new ArrayList<>();
-        DoctorDto doctorDto = new DoctorDto(1L, "Adam", "Śliwiński", "GP", 5.0, new ArrayList<>(), new ArrayList<>());
+        DoctorDto doctorDto = new DoctorDto.DoctorDtoBuilder()
+                .id(1L)
+                .firstname("Adam")
+                .lastname("Śliwiński")
+                .specialization("GP")
+                .rating(5.0)
+                .build();
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 5.0);
         doctorDtos.add(doctorDto);
         doctors.add(doctor);
@@ -115,7 +130,13 @@ public class DoctorFacadeTest {
     @Test
     public void shouldFindDoctorById() {
         //Given
-        DoctorDto doctorDto = new DoctorDto(1L, "Adam", "Śliwiński", "GP", 5.0, new ArrayList<>(), new ArrayList<>());
+        DoctorDto doctorDto = new DoctorDto.DoctorDtoBuilder()
+                .id(1L)
+                .firstname("Adam")
+                .lastname("Śliwiński")
+                .specialization("GP")
+                .rating(5.0)
+                .build();
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 5.0);
         when(validator.validateDoctorId(anyLong())).thenReturn(true);
         when(doctorService.findDoctorById(anyLong())).thenReturn(doctor);
@@ -131,7 +152,13 @@ public class DoctorFacadeTest {
     @Test
     public void shouldSaveDoctor() {
         //Given
-        DoctorDto doctorDto = new DoctorDto(1L, "Adam", "Śliwiński", "GP", 5.0, new ArrayList<>(), new ArrayList<>());
+        DoctorDto doctorDto = new DoctorDto.DoctorDtoBuilder()
+                .id(1L)
+                .firstname("Adam")
+                .lastname("Śliwiński")
+                .specialization("GP")
+                .rating(5.0)
+                .build();
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 5.0);
         when(doctorService.saveDoctor(any(Doctor.class))).thenReturn(doctor);
         when(doctorMapper.mapToDoctor(any(DoctorDto.class))).thenReturn(doctor);

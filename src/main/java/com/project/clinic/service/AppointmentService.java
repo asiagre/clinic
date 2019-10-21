@@ -3,12 +3,7 @@ package com.project.clinic.service;
 import com.project.clinic.domain.Appointment;
 import com.project.clinic.domain.Doctor;
 import com.project.clinic.domain.Patient;
-import com.project.clinic.dto.AppointmentDto;
-import com.project.clinic.dto.DoctorDto;
 import com.project.clinic.exception.SlotsException;
-import com.project.clinic.mapper.AppointmentMapper;
-import com.project.clinic.mapper.DoctorMapper;
-import com.project.clinic.mapper.PatientMapper;
 import com.project.clinic.repository.AppointmentRepository;
 import com.project.clinic.repository.DoctorRepository;
 import com.project.clinic.repository.PatientRepository;
@@ -16,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service

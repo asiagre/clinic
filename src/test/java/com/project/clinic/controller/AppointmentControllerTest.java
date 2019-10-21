@@ -2,7 +2,6 @@ package com.project.clinic.controller;
 
 import com.google.gson.*;
 import com.project.clinic.dto.AppointmentDto;
-import com.project.clinic.dto.DoctorDto;
 import com.project.clinic.facade.AppointmentFacade;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,17 +14,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.lang.reflect.Type;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -55,7 +50,12 @@ public class AppointmentControllerTest {
     @Test
     public void shouldMakeAppointment() throws Exception {
         //Given
-        AppointmentDto appointmentDto = new AppointmentDto(1L, 2L, 3L, LocalDateTime.of(2019, 10, 23, 8, 0));
+        AppointmentDto appointmentDto = new AppointmentDto.AppointmentDtoBuilder()
+                .id(1L)
+                .doctorId(1L)
+                .patientId(3L)
+                .visitDate(LocalDateTime.of(2019, 11, 5, 8, 0))
+                .build();
         when(appointmentFacade.makeAppointment(ArgumentMatchers.any(AppointmentDto.class))).thenReturn(appointmentDto);
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new JsonSerializer<LocalDateTime>() {
             @Override
@@ -78,7 +78,12 @@ public class AppointmentControllerTest {
     public void shouldEditAppointment() throws Exception {
         //Given
         Gson gson = new Gson();
-        AppointmentDto appointmentDto = new AppointmentDto(1L, 2L, 3L, LocalDateTime.of(2019, 11, 14, 9, 0));
+        AppointmentDto appointmentDto = new AppointmentDto.AppointmentDtoBuilder()
+                .id(1L)
+                .doctorId(1L)
+                .patientId(3L)
+                .visitDate(LocalDateTime.of(2019, 11, 5, 8, 0))
+                .build();
         when(appointmentFacade.changeAppointmentDate(2L, 1L, LocalDateTime.of(2019, 11, 14, 9, 0))).thenReturn(appointmentDto);
         String jsonContent = gson.toJson(appointmentDto);
 
@@ -95,7 +100,12 @@ public class AppointmentControllerTest {
     @Test
     public void shouldGetPatientAppointments() throws Exception {
         //Given
-        AppointmentDto appointmentDto = new AppointmentDto(1L, 2L, 3L, LocalDateTime.of(2019, 10, 23, 8, 0));
+        AppointmentDto appointmentDto = new AppointmentDto.AppointmentDtoBuilder()
+                .id(1L)
+                .doctorId(1L)
+                .patientId(3L)
+                .visitDate(LocalDateTime.of(2019, 11, 5, 8, 0))
+                .build();
         List<AppointmentDto> appointmentDtos = new ArrayList<>();
         appointmentDtos.add(appointmentDto);
         when(appointmentFacade.getPatientAppointments(3L)).thenReturn(appointmentDtos);

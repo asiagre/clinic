@@ -3,7 +3,6 @@ package com.project.clinic.repository;
 import com.project.clinic.domain.Appointment;
 import com.project.clinic.domain.Doctor;
 import com.project.clinic.domain.Patient;
-import lombok.AllArgsConstructor;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,8 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -35,8 +32,6 @@ public class AppointmentRepositoryTest {
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 0.0);
         Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
         Appointment appointment = new Appointment(doctor, patient, LocalDateTime.of(2019, 10, 19, 8, 0));
-        //doctorRepository.save(doctor);
-        //patientRepository.save(patient);
 
         //When
         appointmentRepository.save(appointment);

@@ -7,7 +7,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 @NamedNativeQuery(
@@ -48,7 +48,15 @@ public class Patient {
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
-    private Set<Appointment> appointmentList;
+    private Set<Appointment> appointmentList = new HashSet<>();
+
+    public Patient(String firstname, String lastname, String pin, String phoneNumber, String email) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.pin = pin;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
 
     public Patient(Long id, String firstname, String lastname, String pin, String phoneNumber, String email) {
         this.id = id;
@@ -59,54 +67,4 @@ public class Patient {
         this.email = email;
     }
 
-    public Patient(String firstname, String lastname, String pin, String phoneNumber, String email) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.pin = pin;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-    }
-
-    public static class PatientBuilder {
-        private Long id;
-        private String firstname;
-        private String lastname;
-        private String pin;
-        private String phoneNumber;
-        private String email;
-
-        public PatientBuilder id(Long id) {
-            this.id = id;
-            return this;
-        }
-
-        public PatientBuilder firstname(String firstname) {
-            this.firstname = firstname;
-            return this;
-        }
-
-        public PatientBuilder lastname(String lastname) {
-            this.lastname = lastname;
-            return this;
-        }
-
-        public PatientBuilder pin(String pin) {
-            this.pin = pin;
-            return this;
-        }
-
-        public PatientBuilder phoneNumber(String phoneNumber) {
-            this.phoneNumber = phoneNumber;
-            return this;
-        }
-
-        public PatientBuilder email(String email) {
-            this.email = email;
-            return this;
-        }
-
-        public Patient build() {
-            return new Patient(id, firstname, lastname, pin, phoneNumber, email);
-        }
-    }
 }

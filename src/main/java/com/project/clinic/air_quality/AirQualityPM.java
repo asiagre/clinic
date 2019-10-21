@@ -1,9 +1,7 @@
 package com.project.clinic.air_quality;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sun.corba.se.spi.ior.ObjectKey;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +18,6 @@ public class AirQualityPM {
 
     private int pm25;
 
-    @JsonProperty("data.city.name")
     private String city;
 
     @SuppressWarnings("unchecked")

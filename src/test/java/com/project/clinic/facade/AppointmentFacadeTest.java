@@ -51,7 +51,12 @@ public class AppointmentFacadeTest {
         Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 5.0);
         Appointment appointment = new Appointment(3L, doctor, patient, LocalDateTime.of(2019, 11, 5, 8, 0));
-        AppointmentDto appointmentDto = new AppointmentDto(3L, 1L, 2L, LocalDateTime.of(2019, 11, 5, 8, 0));
+        AppointmentDto appointmentDto = new AppointmentDto.AppointmentDtoBuilder()
+                .id(3L)
+                .doctorId(1L)
+                .patientId(2L)
+                .visitDate(LocalDateTime.of(2019, 11, 5, 8, 0))
+                .build();
         when(validator.validateDoctorId(anyLong())).thenReturn(true);
         lenient().when(validator.validateAppointmentId(anyLong())).thenReturn(true);
         when(doctorService.findDoctorById(anyLong())).thenReturn(doctor);
@@ -72,7 +77,12 @@ public class AppointmentFacadeTest {
         //Given
         Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 5.0);
-        AppointmentDto appointmentDto = new AppointmentDto(3L, 1L, 2L, LocalDateTime.of(2019, 11, 5, 8, 0));
+        AppointmentDto appointmentDto = new AppointmentDto.AppointmentDtoBuilder()
+                .id(3L)
+                .doctorId(1L)
+                .patientId(2L)
+                .visitDate(LocalDateTime.of(2019, 11, 5, 8, 0))
+                .build();
         Appointment appointment = new Appointment(3L, doctor, patient, LocalDateTime.of(2019, 11, 5, 8, 0));
         when(validator.validateAppointmentId(anyLong())).thenReturn(true);
         when(appointmentService.changeAppointmentDate(anyLong(), anyLong(), any(LocalDateTime.class))).thenReturn(appointment);
@@ -92,7 +102,12 @@ public class AppointmentFacadeTest {
         Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 5.0);
         Appointment appointment = new Appointment(3L, doctor, patient, LocalDateTime.of(2019, 11, 5, 8, 0));
-        AppointmentDto appointmentDto = new AppointmentDto(3L, 1L, 2L, LocalDateTime.of(2019, 11, 5, 8, 0));
+        AppointmentDto appointmentDto = new AppointmentDto.AppointmentDtoBuilder()
+                .id(3L)
+                .doctorId(1L)
+                .patientId(2L)
+                .visitDate(LocalDateTime.of(2019, 11, 5, 8, 0))
+                .build();
         List<Appointment> appointments = new ArrayList<>();
         List<AppointmentDto> appointmentDtos = new ArrayList<>();
         appointments.add(appointment);

@@ -1,7 +1,6 @@
 package com.project.clinic.repository;
 
 import com.project.clinic.domain.Doctor;
-import com.project.clinic.domain.Specialization;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
