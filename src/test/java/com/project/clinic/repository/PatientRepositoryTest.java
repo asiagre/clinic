@@ -20,7 +20,7 @@ public class PatientRepositoryTest {
     @Test
     public void shouldSavePatient() {
         //Given
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
 
         //When
         patientRepository.save(patient);
@@ -36,7 +36,7 @@ public class PatientRepositoryTest {
     @Test
     public void shouldGetAllPatients() {
         //Given
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         patientRepository.save(patient);
 
         //When
@@ -53,7 +53,7 @@ public class PatientRepositoryTest {
     @Test
     public void shouldGetPatientByLastname() {
         //Given
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         patientRepository.save(patient);
 
         //When
@@ -72,7 +72,7 @@ public class PatientRepositoryTest {
     @Test
     public void shouldGetPatientById() {
         //Given
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         patientRepository.save(patient);
 
         //When
@@ -89,7 +89,7 @@ public class PatientRepositoryTest {
     @Test
     public void shouldDeletePatient() {
         //Given
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         patientRepository.save(patient);
 
         //When
@@ -106,7 +106,7 @@ public class PatientRepositoryTest {
     @Test
     public void shouldCheckIfPatientExists() {
         //Given
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         patientRepository.save(patient);
 
         //When

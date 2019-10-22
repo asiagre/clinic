@@ -14,6 +14,7 @@ public class PatientDto {
     private String pin;
     private String phoneNumber;
     private String email;
+    private String password;
 
     public static class PatientDtoBuilder {
         private Long id;
@@ -22,6 +23,7 @@ public class PatientDto {
         private String pin;
         private String phoneNumber;
         private String email;
+        private String password;
 
         public PatientDtoBuilder id(Long id) {
             this.id = id;
@@ -53,8 +55,13 @@ public class PatientDto {
             return this;
         }
 
+        public PatientDtoBuilder password(String password) {
+            this.password = password;
+            return this;
+        }
+
         public PatientDto build() {
-            return new PatientDto(id, firstname, lastname, pin, phoneNumber, email);
+            return new PatientDto(id, firstname, lastname, pin, phoneNumber, email, password);
         }
     }
 }

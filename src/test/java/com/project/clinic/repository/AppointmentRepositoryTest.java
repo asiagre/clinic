@@ -30,7 +30,7 @@ public class AppointmentRepositoryTest {
     public void shouldSaveAppointment() {
         //Given
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 0.0);
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         Appointment appointment = new Appointment(doctor, patient, LocalDateTime.of(2019, 10, 19, 8, 0));
 
         //When
@@ -51,7 +51,7 @@ public class AppointmentRepositoryTest {
     public void shouldFindAppointmentById() {
         //Given
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 0.0);
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         Appointment appointment = new Appointment(doctor, patient, LocalDateTime.of(2019, 10, 19, 8, 0));
         appointmentRepository.save(appointment);
 
@@ -73,7 +73,7 @@ public class AppointmentRepositoryTest {
     public void shouldFindAllAppointments() {
         //Given
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 0.0);
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         Appointment appointment = new Appointment(doctor, patient, LocalDateTime.of(2019, 10, 19, 8, 0));
         appointmentRepository.save(appointment);
 
@@ -94,7 +94,7 @@ public class AppointmentRepositoryTest {
     public void shouldRemoveAppointment() {
         //Given
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 0.0);
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         Appointment appointment = new Appointment(doctor, patient, LocalDateTime.of(2019, 10, 19, 8, 0));
         appointmentRepository.save(appointment);
 
@@ -115,7 +115,7 @@ public class AppointmentRepositoryTest {
     public void shouldFindIfExists() {
         //Given
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 0.0);
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         Appointment appointment = new Appointment(doctor, patient, LocalDateTime.of(2019, 10, 19, 8, 0));
         appointmentRepository.save(appointment);
 

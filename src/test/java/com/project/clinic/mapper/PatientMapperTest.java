@@ -22,7 +22,7 @@ public class PatientMapperTest {
     @Test
     public void mapToPatientDto() {
         //Given
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
 
         //When
         PatientDto patientDto = patientMapper.mapToPatientDto(patient);
@@ -53,7 +53,7 @@ public class PatientMapperTest {
     @Test
     public void mapToPatientDtoList() {
         //Given
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         List<Patient> patients = new ArrayList<>();
         patients.add(patient);
 

@@ -28,7 +28,7 @@ public class PatientServiceTest {
     @Test
     public void shouldGetAllPatients() {
         //Given
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         List<Patient> patients = new ArrayList<>();
         patients.add(patient);
         when(patientRepository.findAll()).thenReturn(patients);
@@ -57,7 +57,7 @@ public class PatientServiceTest {
     @Test
     public void shouldGetPatientByLastname() {
         //Given
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         List<Patient> patients = new ArrayList<>();
         patients.add(patient);
         when(patientRepository.retrievePatientsWhereLastnameFragmentIs(ArgumentMatchers.anyString())).thenReturn(patients);
@@ -73,7 +73,7 @@ public class PatientServiceTest {
     @Test
     public void shouldGetPatientById() {
         //Given
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         when(patientRepository.findById(1L)).thenReturn(Optional.of(patient));
 
         //When
@@ -86,7 +86,7 @@ public class PatientServiceTest {
     @Test
     public void shouldSavePatient() {
         //Given
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         when(patientRepository.save(patient)).thenReturn(patient);
 
         //When

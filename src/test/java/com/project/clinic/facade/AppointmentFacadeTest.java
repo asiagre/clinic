@@ -48,7 +48,7 @@ public class AppointmentFacadeTest {
     @Test
     public void shouldMakeAppointment() {
         //Given
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 5.0);
         Appointment appointment = new Appointment(3L, doctor, patient, LocalDateTime.of(2019, 11, 5, 8, 0));
         AppointmentDto appointmentDto = new AppointmentDto.AppointmentDtoBuilder()
@@ -75,7 +75,7 @@ public class AppointmentFacadeTest {
     @Test
     public void shouldChangeAppointmentDate() {
         //Given
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 5.0);
         AppointmentDto appointmentDto = new AppointmentDto.AppointmentDtoBuilder()
                 .id(3L)
@@ -99,7 +99,7 @@ public class AppointmentFacadeTest {
     @Test
     public void shouldGetPatientAppointments() {
         //Given
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 5.0);
         Appointment appointment = new Appointment(3L, doctor, patient, LocalDateTime.of(2019, 11, 5, 8, 0));
         AppointmentDto appointmentDto = new AppointmentDto.AppointmentDtoBuilder()

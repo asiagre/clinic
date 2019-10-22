@@ -25,7 +25,7 @@ public class AppointmentMapperTest {
     @Test
     public void mapToAppointmentDto() {
         //Given
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 5.0);
         Appointment appointment = new Appointment(3L, doctor, patient, LocalDateTime.of(2019, 11, 5, 8, 0));
 
@@ -45,7 +45,7 @@ public class AppointmentMapperTest {
                 .patientId(2L)
                 .visitDate(LocalDateTime.of(2019, 11, 5, 8, 0))
                 .build();
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 5.0);
 
         //When
@@ -60,7 +60,7 @@ public class AppointmentMapperTest {
     @Test
     public void mapToAppointmentDtoList() {
         //Given
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 5.0);
         Appointment appointment = new Appointment(3L, doctor, patient, LocalDateTime.of(2019, 11, 5, 8, 0));
         List<Appointment> appointments = new ArrayList<>();

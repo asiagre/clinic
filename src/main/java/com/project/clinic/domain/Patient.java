@@ -41,6 +41,9 @@ public class Patient {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "password")
+    private String password;
+
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(
             targetEntity = Appointment.class,
@@ -50,21 +53,23 @@ public class Patient {
     )
     private Set<Appointment> appointmentList = new HashSet<>();
 
-    public Patient(String firstname, String lastname, String pin, String phoneNumber, String email) {
+    public Patient(String firstname, String lastname, String pin, String phoneNumber, String email, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.pin = pin;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.password = password;
     }
 
-    public Patient(Long id, String firstname, String lastname, String pin, String phoneNumber, String email) {
+    public Patient(Long id, String firstname, String lastname, String pin, String phoneNumber, String email, String password) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.pin = pin;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.password = password;
     }
 
 }

@@ -41,7 +41,7 @@ public class AppointmentServiceTest {
         //Given
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 0.0);
         doctor.getSlots().add(LocalDateTime.of(2019, 10, 19, 8, 0));
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         Appointment appointment = new Appointment(doctor, patient, LocalDateTime.of(2019, 10, 19, 8, 0));
         when(appointmentRepository.save(appointment)).thenReturn(appointment);
 
@@ -60,7 +60,7 @@ public class AppointmentServiceTest {
         //Given
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 0.0);
         doctor.getSlots().add(LocalDateTime.of(2019, 10, 19, 9, 0));
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         Appointment appointment = new Appointment(doctor, patient, LocalDateTime.of(2019, 10, 19, 8, 0));
         when(doctorRepository.findById(1L)).thenReturn(Optional.of(doctor));
         when(appointmentRepository.findById(2L)).thenReturn(Optional.of(appointment));
@@ -80,7 +80,7 @@ public class AppointmentServiceTest {
     public void shouldGetPatientAppointments() {
         //Given
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 0.0);
-        Patient patient = new Patient(1L, "Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient(1L, "Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         Appointment appointment = new Appointment(doctor, patient, LocalDateTime.of(2019, 10, 19, 8, 0));
         List<Appointment> appointmentList = new ArrayList<>();
         appointmentList.add(appointment);
@@ -98,7 +98,7 @@ public class AppointmentServiceTest {
     public void shouldRemoveAppointment() {
         //Given
         Doctor doctor = new Doctor(1L, "Adam", "Śliwiński", "GP", 0.0, new ArrayList<>(), new ArrayList<>());
-        Patient patient = new Patient(2L, "Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", new HashSet<>());
+        Patient patient = new Patient(2L, "Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef", new HashSet<>());
         Appointment appointment = new Appointment(doctor, patient, LocalDateTime.of(2019, 10, 19, 8, 0));
         patient.getAppointmentList().add(appointment);
         when(appointmentRepository.findById(3L)).thenReturn(Optional.of(appointment));

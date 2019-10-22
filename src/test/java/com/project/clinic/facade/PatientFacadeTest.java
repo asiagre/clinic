@@ -45,8 +45,9 @@ public class PatientFacadeTest {
                 .pin("56071812345")
                 .phoneNumber("536192836")
                 .email("jan.kowalski@test.pl")
+                .password("abcdef")
                 .build();
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         patientDtos.add(patientDto);
         patients.add(patient);
         when(patientService.getAllPatients()).thenReturn(patients);
@@ -72,8 +73,9 @@ public class PatientFacadeTest {
                 .pin("56071812345")
                 .phoneNumber("536192836")
                 .email("jan.kowalski@test.pl")
+                .password("abcdef")
                 .build();
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         patientDtos.add(patientDto);
         patients.add(patient);
         when(patientService.getPatientByLastname(anyString())).thenReturn(patients);
@@ -97,8 +99,9 @@ public class PatientFacadeTest {
                 .pin("56071812345")
                 .phoneNumber("536192836")
                 .email("jan.kowalski@test.pl")
+                .password("abcdef")
                 .build();
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         when(validator.validatePatientId(anyLong())).thenReturn(true);
         when(patientService.getPatientById(anyLong())).thenReturn(patient);
         when(patientMapper.mapToPatientDto(patient)).thenReturn(patientDto);
@@ -120,8 +123,9 @@ public class PatientFacadeTest {
                 .pin("56071812345")
                 .phoneNumber("536192836")
                 .email("jan.kowalski@test.pl")
+                .password("abcdef")
                 .build();
-        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl");
+        Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
         when(patientService.savePatient(patient)).thenReturn(patient);
         when(patientMapper.mapToPatient(any(PatientDto.class))).thenReturn(patient);
         when(patientMapper.mapToPatientDto(any(Patient.class))).thenReturn(patientDto);

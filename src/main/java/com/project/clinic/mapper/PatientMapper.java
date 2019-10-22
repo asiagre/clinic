@@ -18,11 +18,12 @@ public class PatientMapper {
                 .pin(patient.getPin())
                 .phoneNumber(patient.getPhoneNumber())
                 .email(patient.getEmail())
+                .password(patient.getPassword())
                 .build();
     }
 
     public Patient mapToPatient(final PatientDto patientDto) {
-        return new Patient(patientDto.getId(), patientDto.getFirstname(), patientDto.getLastname(), patientDto.getPin(), patientDto.getPhoneNumber(), patientDto.getEmail());
+        return new Patient(patientDto.getId(), patientDto.getFirstname(), patientDto.getLastname(), patientDto.getPin(), patientDto.getPhoneNumber(), patientDto.getEmail(), patientDto.getPassword());
     }
 
     public List<PatientDto> mapToPatientDtoList(final List<Patient> patients) {

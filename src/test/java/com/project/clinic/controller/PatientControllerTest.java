@@ -55,6 +55,7 @@ public class PatientControllerTest {
                 .pin("56071812345")
                 .phoneNumber("536192836")
                 .email("jan.kowalski@test.pl")
+                .password("abcdef")
                 .build();
         List<PatientDto> patientDtoList = new ArrayList<>();
         patientDtoList.add(patientDto);
@@ -78,6 +79,7 @@ public class PatientControllerTest {
                 .pin("56071812345")
                 .phoneNumber("536192836")
                 .email("jan.kowalski@test.pl")
+                .password("abcdef")
                 .build();
         List<PatientDto> patientDtoList = new ArrayList<>();
         patientDtoList.add(patientDto);
@@ -102,6 +104,7 @@ public class PatientControllerTest {
                 .pin("56071812345")
                 .phoneNumber("536192836")
                 .email("jan.kowalski@test.pl")
+                .password("abcdef")
                 .build();
         when(patientFacade.getPatientById(1L)).thenReturn(patientDto);
 
@@ -122,6 +125,7 @@ public class PatientControllerTest {
                 .pin("56071812345")
                 .phoneNumber("536192836")
                 .email("jan.kowalski@test.pl")
+                .password("abcdef")
                 .build();
         when(patientFacade.savePatient(ArgumentMatchers.any(PatientDto.class))).thenReturn(patientDto);
         Gson gson = new Gson();
@@ -146,6 +150,7 @@ public class PatientControllerTest {
                 .pin("56071812345")
                 .phoneNumber("536192836")
                 .email("jan.kowalski@test.pl")
+                .password("abcdef")
                 .build();
         when(patientFacade.savePatient(ArgumentMatchers.any(PatientDto.class))).thenReturn(patientDto);
         Gson gson = new Gson();
@@ -162,14 +167,6 @@ public class PatientControllerTest {
     @Test
     public void shouldRemovePatient() throws Exception {
         //Given
-//        PatientDto patientDto = new PatientDto.PatientDtoBuilder()
-//                .id(1L)
-//                .firstname("Jan")
-//                .lastname("Kowalski")
-//                .pin("56071812345")
-//                .phoneNumber("536192836")
-//                .email("jan.kowalski@test.pl")
-//                .build();
 
         //When&Then
         mockMvc.perform(delete("/v1/clinic/patients/1")
