@@ -1,6 +1,6 @@
 # CLINIC
 
-This is a backend of clinic, written in Java with SpringBoot. In this application
+This is the backend of a clinic, written in Java with SpringBoot. In this application
 you can make many operations, for example adding doctors, adding patients, 
 making appointments. To see all options download, install, and go to 
 http://localhost:8080/swagger-ui.html 
