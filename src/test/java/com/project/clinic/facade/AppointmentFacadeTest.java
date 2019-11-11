@@ -57,8 +57,6 @@ public class AppointmentFacadeTest {
                 .patientId(2L)
                 .visitDate(LocalDateTime.of(2019, 11, 5, 8, 0))
                 .build();
-        when(validator.validateDoctorId(anyLong())).thenReturn(true);
-        lenient().when(validator.validateAppointmentId(anyLong())).thenReturn(true);
         when(doctorService.findDoctorById(anyLong())).thenReturn(doctor);
         when(patientService.getPatientById(anyLong())).thenReturn(patient);
         when(appointmentMapper.mapToAppointment(any(AppointmentDto.class), any(Doctor.class), any(Patient.class))).thenReturn(appointment);
@@ -84,7 +82,6 @@ public class AppointmentFacadeTest {
                 .visitDate(LocalDateTime.of(2019, 11, 5, 8, 0))
                 .build();
         Appointment appointment = new Appointment(3L, doctor, patient, LocalDateTime.of(2019, 11, 5, 8, 0));
-        when(validator.validateAppointmentId(anyLong())).thenReturn(true);
         when(appointmentService.changeAppointmentDate(anyLong(), anyLong(), any(LocalDateTime.class))).thenReturn(appointment);
         when(appointmentMapper.mapToAppointmentDto(any(Appointment.class))).thenReturn(appointmentDto);
 
@@ -112,7 +109,6 @@ public class AppointmentFacadeTest {
         List<AppointmentDto> appointmentDtos = new ArrayList<>();
         appointments.add(appointment);
         appointmentDtos.add(appointmentDto);
-        when(validator.validatePatientId(anyLong())).thenReturn(true);
         when(appointmentService.getPatientAppointments(anyLong())).thenReturn(appointments);
         when(appointmentMapper.mapToAppointmentDtoList(appointments)).thenReturn(appointmentDtos);
 
@@ -126,10 +122,7 @@ public class AppointmentFacadeTest {
 
     @Test
     public void shouldRemoveAppointment() {
-        //Given
-        when(validator.validateAppointmentId(anyLong())).thenReturn(true);
-
-        //When
+        //Given && When
         appointmentFacade.removeAppointment(1L);
 
         //Then

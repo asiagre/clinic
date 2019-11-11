@@ -1,5 +1,6 @@
 package com.project.clinic.validator;
 
+import com.project.clinic.exception.IdNotFoundException;
 import com.project.clinic.service.AppointmentService;
 import com.project.clinic.service.DoctorService;
 import com.project.clinic.service.PatientService;
@@ -18,15 +19,21 @@ public class Validator {
     @Autowired
     private AppointmentService appointmentService;
 
-    public boolean validatePatientId(Long id) {
-        return patientService.existsById(id);
+    public void validatePatientId(Long id) {
+        if(!patientService.existsById(id)) {
+            throw new IdNotFoundException("Wrong patient id");
+        }
     }
 
-    public boolean validateDoctorId(Long id) {
-        return doctorService.existsById(id);
+    public void validateDoctorId(Long id) {
+        if(!doctorService.existsById(id)) {
+            throw new IdNotFoundException("Wrong doctor id");
+        }
     }
 
-    public boolean validateAppointmentId(Long id) {
-        return appointmentService.existsById(id);
+    public void validateAppointmentId(Long id) {
+        if(!appointmentService.existsById(id)) {
+            throw new IdNotFoundException("Wrong appointment id");
+        }
     }
 }

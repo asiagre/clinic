@@ -102,7 +102,6 @@ public class PatientFacadeTest {
                 .password("abcdef")
                 .build();
         Patient patient = new Patient("Jan", "Kowalski", "56071812345", "536192836", "jan.kowalski@test.pl", "abcdef");
-        when(validator.validatePatientId(anyLong())).thenReturn(true);
         when(patientService.getPatientById(anyLong())).thenReturn(patient);
         when(patientMapper.mapToPatientDto(patient)).thenReturn(patientDto);
 
@@ -139,10 +138,7 @@ public class PatientFacadeTest {
 
     @Test
     public void shouldDeletePatient() {
-        //Given
-        when(validator.validatePatientId(anyLong())).thenReturn(true);
-
-        //When
+        //Given && When
         patientFacade.deletePatient(1L);
 
         //Then

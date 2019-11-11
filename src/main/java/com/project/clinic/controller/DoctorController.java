@@ -46,7 +46,7 @@ public class DoctorController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "doctors/{id}", consumes = APPLICATION_JSON_VALUE)
     public DoctorDto editDoctor(@PathVariable Long id, @RequestBody DoctorDto doctorDto) {
-        if (doctorDto.getId() == id) {
+        if (doctorDto.getId().equals(id)) {
             return doctorFacade.saveDoctor(doctorDto);
         } else {
             throw new IdNotFoundException("Ids do not match");

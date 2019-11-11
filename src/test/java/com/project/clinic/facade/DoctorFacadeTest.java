@@ -138,7 +138,6 @@ public class DoctorFacadeTest {
                 .rating(5.0)
                 .build();
         Doctor doctor = new Doctor("Adam", "Śliwiński", "GP", 5.0);
-        when(validator.validateDoctorId(anyLong())).thenReturn(true);
         when(doctorService.findDoctorById(anyLong())).thenReturn(doctor);
         when(doctorMapper.mapToDoctorDto(doctor)).thenReturn(doctorDto);
 
@@ -173,10 +172,7 @@ public class DoctorFacadeTest {
 
     @Test
     public void shouldRemoveDoctor() {
-        //Given
-        when(validator.validateDoctorId(anyLong())).thenReturn(true);
-
-        //When
+        //Given && When
         doctorFacade.removeDoctor(1L);
 
         //Then
@@ -185,10 +181,7 @@ public class DoctorFacadeTest {
 
     @Test
     public void shouldAddScore() {
-        //Given
-        when(validator.validateDoctorId(anyLong())).thenReturn(true);
-
-        //When
+        //Given && When
         doctorFacade.addScore(1L, 5);
 
         //Then
@@ -197,10 +190,7 @@ public class DoctorFacadeTest {
 
     @Test
     public void shouldAddFreeSlots() {
-        //Given
-        when(validator.validateDoctorId(anyLong())).thenReturn(true);
-
-        //When
+        //Given && When
         doctorFacade.addFreeSlots(1L, LocalDateTime.of(2019, 10, 23, 8, 0));
 
         //Then

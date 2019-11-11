@@ -3,12 +3,19 @@ package com.project.clinic.bmi;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
 @Service
 public class BmiClient {
+
+    @Value("${bmi.api.endpoint.prod}")
+    private String apiEndpoint;
+
+    @Value("${x-rapidapi-key}")
+    private String apiKey;
 
     @Autowired
     private OkHttpClient okHttpClient;
@@ -22,10 +29,10 @@ public class BmiClient {
         String json = objectMapper.writeValueAsString(bmiDto);
         RequestBody body = RequestBody.create(mediaType, json);
         Request request = new Request.Builder()
-                .url("https://bmi.p.rapidapi.com/")
+                .url(apiEndpoint)
                 .post(body)
-                .addHeader("x-rapidapi-host", "bmi.p.rapidapi.com")
-                .addHeader("x-rapidapi-key", "e313e5e53dmshdcb46793fae0f99p145781jsn2ccac2494f09")
+                .addHeader("x-rapidapi-host", apiEndpoint)
+                .addHeader("x-rapidapi-key", apiKey)
                 .addHeader("content-type", "application/json")
                 .addHeader("accept", "application/json")
                 .build();
