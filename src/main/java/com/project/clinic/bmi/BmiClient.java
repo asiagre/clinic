@@ -14,6 +14,9 @@ public class BmiClient {
     @Value("${bmi.api.endpoint.prod}")
     private String apiEndpoint;
 
+    @Value("${x-rapidapi-host}")
+    private String apiHost;
+
     @Value("${x-rapidapi-key}")
     private String apiKey;
 
@@ -31,7 +34,7 @@ public class BmiClient {
         Request request = new Request.Builder()
                 .url(apiEndpoint)
                 .post(body)
-                .addHeader("x-rapidapi-host", apiEndpoint)
+                .addHeader("x-rapidapi-host", apiHost)
                 .addHeader("x-rapidapi-key", apiKey)
                 .addHeader("content-type", "application/json")
                 .addHeader("accept", "application/json")
